@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ job.title }}</h1>
+<p>Company: {{ job.company }}</p>
+<p>Location: {{ job.location }}</p>
+
+<h1>Application:</h1>
+<ul>
+    {% if application %}
+    <li>Applied at : {{application.created_at}}</li>
+    <li>Name: {{ application.name }}</li>
+    <li>Email: {{ appliction.email }}</li>
+    <li>Cover Letter: {{ appliction.cover_letter }}</li>
+    {% else %}
+    <li>No application yet.</li>
+    {% endif %}
+</ul>
+
+{% if applications.count > 0 %}
+<a href="{% url 'apply_for_job' job.pk %}">Apply for this job</a>
+{% else %}
+<p>Already applied for this job.</p>
+{% endif %}
+
+{% endblock %}

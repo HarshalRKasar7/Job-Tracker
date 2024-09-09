@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ job.title }}</h1>
+<p>Company: {{ job.company }}</p>
+<p>Location: {{ job.location }}</p>
+
+<h2>Applications:</h2>
+<ul>
+{% for app in applications %}
+    <li><a href="{% url 'application_details' app.pk %}">{{ app.name }} - {{ app.email }}</a></li>
+{% empty %}
+    <li>No applications yet.</li>
+{% endfor %}
+</ul>
+
+{% if applications.count == 0 %}
+<a href="{% url 'apply_for_job' job.pk %}">Apply for this job</a>
+{% else %}
+<p>Already applied for this job.</p>
+{% endif %}
+
+{% endblock %}
